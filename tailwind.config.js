@@ -8,9 +8,11 @@ export default {
     extend: {
       fontFamily : {
         "poppins" : ['poppins'],
+        "caveat" : ['caveat']
       },
       colors : {
         "ungu" : '#BEADFA',
+        "unguMuda" : '#E8E1FF'
       }
     },
   },

@@ -3,7 +3,7 @@ const Button = (props) => {
 
     return(
         <div>
-            <button type={type} className={`${classname} text-sm px-8 py-4 rounded-xl`}>{text}</button>
+            <button type={type} className={`${classname} text-sm lg:px-8 lg:py-4 px-4 py-2 rounded-xl`}>{text}</button>
         </div>
     )
 }
