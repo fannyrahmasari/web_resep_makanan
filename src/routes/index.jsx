@@ -1,10 +1,11 @@
-import LandingPages from "../pages/landingPages"
+// import LandingPages from "../pages/landingPages"
+import SignUp from "../pages/auth/signup"
 function App() {
 
   return (
     <div>
       <div>
-        <LandingPages />
+        <SignUp />
       </div>
     </div>
   )
