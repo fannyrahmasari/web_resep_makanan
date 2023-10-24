@@ -2,6 +2,7 @@ import Card from "../components/Card"
 import Navbar from "../components/Navbar"
 import InputForm from "../components/input/Index"
 import card2 from "../assets/img/card-2.png"
+import Footer from "../components/Footer"
 
 const AllRecipe = () => {
     return(
@@ -19,11 +20,16 @@ const AllRecipe = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto flex flex-col lg:flex-row md: flex-row justify-normal items-center">
+            <div className="flex flex-col lg:flex-row md:flex-row justify-center items-center flex-wrap mb-12">
+                <Card image={card2} judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
+                <Card image={card2} judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
+                <Card image={card2} judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
                 <Card image={card2} judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
                 <Card image={card2} judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
                 <Card image={card2} judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
             </div>
+
+            <Footer />
         </div>
     )
 }

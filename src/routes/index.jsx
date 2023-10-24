@@ -1,11 +1,12 @@
 // import LandingPages from "../pages/landingPages"
-import AllRecipe from "../pages/allRecipe"
+// import AllRecipe from "../pages/allRecipe"
+import DetailRecipes from "../pages/detailRecipes"
 function App() {
 
   return (
     <div>
       <div>
-        <AllRecipe />
+        <DetailRecipes />
       </div>
     </div>
   )

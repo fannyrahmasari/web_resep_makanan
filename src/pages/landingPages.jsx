@@ -8,6 +8,7 @@ import about from "../assets/img/about.png"
 import contact from "../assets/img/contact.png"
 import { Fragment } from "react"
 import InputForm from "../components/input/Index"
+import Footer from "../components/Footer"
 const LandingPages = () => {
     return(
     <Fragment>
@@ -108,11 +109,7 @@ const LandingPages = () => {
             </div>
 
             {/* Footer */}
-            <div className="bg-ungu h-10 flex justify-center items-center">
-                <div className="container mx-auto">
-                    <p className="text-white font-semibold text-sm">&copy; 2023 AnekaRasa - Fanny Rahmasari</p>
-                </div>
-            </div>
+            <Footer />
     </Fragment>
     )
 }
