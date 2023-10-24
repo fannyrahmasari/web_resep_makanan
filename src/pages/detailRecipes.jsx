@@ -1,6 +1,8 @@
 const DetailRecipes = () => {
     return(
-
+        <div>
+            
+        </div>
     )
 }
 
