@@ -1,6 +1,9 @@
 import Button from "./Button"
 import hamburger from "../assets/icons/hamburger.png"
+import { useNavigate } from "react-router-dom"
 const Navbar = () => {
+    const navigate = useNavigate()
+
     return(
         <div className="">
             <div className="container mx-auto p-4 pt-2 font-poppins font-semibold">
@@ -18,8 +21,8 @@ const Navbar = () => {
                         </div>
 
                     <div className="lg:flex md:flex hidden font-normal">
-                        <Button classname="text-white font-semibold" type="button" text="Log In" />
-                        <Button classname="text-white font-semibold"  type="button" text="Sign Up" />
+                        <Button onClick={() => navigate('/login')} classname="text-white font-semibold" type="button" text="Log In" />
+                        <Button onClick={() => navigate('/signup')} classname="text-white font-semibold"  type="button" text="Sign Up" />
                     </div>
                 </div>
             </div>
