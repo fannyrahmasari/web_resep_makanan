@@ -1,22 +1,21 @@
 import Navbar from "../components/Navbar"
 import Button from "../components/Button"
 import Card from "../components/Card"
-import hero from "../assets/img/hero-image.png"
-import card1 from "../assets/img/card-1.png"
-import card2 from "../assets/img/card-2.png"
-import about from "../assets/img/about.png"
-import contact from "../assets/img/contact.png"
-import { Fragment } from "react"
 import InputForm from "../components/input/Index"
 import Footer from "../components/Footer"
+
+import { Fragment } from "react"
+import { useNavigate } from "react-router-dom"
 const LandingPages = () => {
+    const navigate = useNavigate()
+
     return(
     <Fragment>
         <div className="bg-ungu w-full lg:h-1/2 md:h-1/2 h-1/2">
             <Navbar />
             <div className="container mx-auto flex flex-col lg:flex-row md:flex-row justify-evenly items-center">
                 <div className="flex justify-center items-center order-1 lg:order-2 md:order-2">
-                    <img src={hero} alt="gambar" className="w-[300px] lg:w-[400px] md:w-[300px] " />
+                    <img src="../src/assets/img/hero-image.png" alt="gambar" className="w-[300px] lg:w-[400px] md:w-[300px] " />
                 </div>
 
                 <div className="mb-5 justify-center items-center flex order-2 lg:order-1 md:order-1">
@@ -44,13 +43,13 @@ const LandingPages = () => {
 
                 <div className="flex justify-center items-center">
                     <div className="flex flex-col lg:flex-row md:flex-row mt-10 lg:ml-16 md:ml-10 ">
-                        <Card image={card1} judul="Es Selendang Mayang" content="Es selendang mayang isinya mirip seperti puding atau kue lapis yang terbuat dari tepung sagu ..." />
-                        <Card image={card2} judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
+                        <Card image="../src/assets/img/card-1.png" judul="Es Selendang Mayang" content="Es selendang mayang isinya mirip seperti puding atau kue lapis yang terbuat dari tepung sagu ..." />
+                        <Card image="../src/assets/img/card-2.png" judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
                     </div>
                 </div>
             </div>
             <div className="container mx-auto flex lg:justify-end md:justify-end justify-center mt-5">
-                <Button type="button" text="Read More ..." classname="bg-ungu text-white font-semibold " />
+                <Button onClick={() => navigate('/allrecipe')} type="button" text="Read More ..." classname="bg-ungu text-white font-semibold " />
             </div>
 
 
@@ -64,7 +63,7 @@ const LandingPages = () => {
                         </p>
                     </div>
                     <div className="">
-                            <img src={about} alt="image" className="lg:w-[500px] lg:h-[400px] md:w-[400px] opacity-80"/>
+                            <img src="../src/assets/img/about.png" alt="image" className="lg:w-[500px] lg:h-[400px] md:w-[400px] opacity-80"/>
                     </div>
                 </div>
             </div>
@@ -74,7 +73,7 @@ const LandingPages = () => {
             <h1 className="text-center font-semibold text-lg mt-5 mb-5">Contact Us</h1>
             <div className="container mx-auto flex flex-col lg:flex-row md:flex-row justify-between mt-10 mb-10">
                 <div className="flex justify-center">
-                    <img src={contact} alt="" className="lg:w-[600px] w-[400px]"/>
+                    <img src="../src/assets/img/contact.png" alt="" className="lg:w-[600px] w-[400px]"/>
                 </div>
                 <div className="lg:w-[500px] w-[300px] mx-auto">
                     <form>
