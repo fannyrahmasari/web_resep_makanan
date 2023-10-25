@@ -17,6 +17,7 @@ const Navbar = () => {
                                 <li><a className="hover:border-b-4 border-gray-900" href="">Recipies</a></li>
                                 <li><a className="hover:border-b-4 border-gray-900" href="">About</a></li>
                                 <li><a className="hover:border-b-4 border-gray-900" href="">Contact Us</a></li>
+                                <li><a onClick={() => navigate('/profile')} className="hover:border-b-4 border-gray-900" href="">Profile</a></li>
                             </ul>
                         </div>
 
