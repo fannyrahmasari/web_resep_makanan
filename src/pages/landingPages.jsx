@@ -20,7 +20,14 @@ const LandingPages = () => {
 
                 <div className="mb-5 justify-center items-center flex order-2 lg:order-1 md:order-1">
                     <h1 className="w-[200px] lg:w-[400px] md:w-[200px] lg:text-[36px] font-semibold text-center font-caveat">What are you waiting for? Let's <span className="text-white">cook together</span>, 
-                    With our favorite recipe
+                    With our favorite recipe.
+
+                    <Button
+                    onClick={() => navigate('/add')} 
+                    text="Add Recipe"
+                    classname="font-poppins font-normal border border-white hover:bg-purple-400 hover:text-white hover:border-none mt-5 "
+                    />
+
                     </h1>
                 </div>
                 </div>
@@ -33,9 +40,10 @@ const LandingPages = () => {
 
                     <div className="flex justify-center items-center flex-col">
                         <Button type="button" text="Fast Food" classname="mt-7 border border-ungu hover:bg-ungu hover:text-white hover:outline-none" />
-                        <Button type="button" text="Fast Food " classname="mt-7 border border-ungu hover:bg-ungu hover:text-white hovernone" />
-                        <Button type="button" text="Desserts" classname="mt-7 border border-ungu hover:bg-ungu hover:text-white hovernone" />
-                        <Button type="button" text="Fast Food" classname="mt-7 border border-ungu hover:bg-ungu hover:text-white hover:outline-none" />
+                        <Button type="button" text="Soups" 
+                        classname="mt-7 border lg:w-[123px] md:w-[92px] w-[92px] border-ungu hover:bg-ungu hover:text-white hovernone" />
+                        <Button type="button" text="Desserts" classname="mt-7 border border-ungu lg:w-[123px] md:w-[90px]  w-[92px] hover:bg-ungu hover:text-white hovernone" />
+                        <Button type="button" text="Salads" classname="mt-7 border border-ungu lg:w-[123px] md:w-[92px]  hover:bg-ungu hover:text-white hover:outline-none" />
                     </div>
                 </div>
 
@@ -43,7 +51,8 @@ const LandingPages = () => {
 
                 <div className="flex justify-center items-center">
                     <div className="flex flex-col lg:flex-row md:flex-row mt-10 lg:ml-16 md:ml-10 ">
-                        <Card image="../src/assets/img/card-1.png" judul="Es Selendang Mayang" content="Es selendang mayang isinya mirip seperti puding atau kue lapis yang terbuat dari tepung sagu ..." />
+                        <Card image="../src/assets/img/card-1.jpg" judul="Es Selendang Mayang" content="Es selendang mayang isinya mirip seperti puding atau kue lapis yang terbuat dari tepung sagu ..." />
+
                         <Card image="../src/assets/img/card-2.png" judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
                     </div>
                 </div>

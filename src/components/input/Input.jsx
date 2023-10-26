@@ -1,5 +1,5 @@
 const Input = (props) => {
-    const { type, placeholder, name, id } = props
+    const { type, placeholder, name, id, value, onChange } = props
 
     return(
         <input 
@@ -8,6 +8,8 @@ const Input = (props) => {
         placeholder={placeholder}
         name={name}
         id={id}
+        value={value}
+        onChange={onChange}
         />
     )
 }

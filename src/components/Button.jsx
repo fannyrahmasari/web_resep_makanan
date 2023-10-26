@@ -5,7 +5,7 @@ const Button = (props) => {
         <div>
             <button 
             type={type} 
-            className={`${classname} text-sm lg:px-8 lg:py-4 px-4 py-2 rounded-xl`}
+            className={`${classname} text-sm lg:px-7 lg:py-3 px-4 py-2 rounded-xl`}
             onClick={onClick}
             >
                 {text}
