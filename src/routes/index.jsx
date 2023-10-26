@@ -4,6 +4,7 @@ import Login from '../pages/auth/login'
 import SignUp from '../pages/auth/signup'
 import AllRecipe from '../pages/allRecipe'
 import Profile from '../pages/profile'
+import DetailRecipes from '../pages/detailRecipes'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/allrecipe' element={<AllRecipe />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/detail' element={<DetailRecipes />} />
       </Routes>
     </Router>
   )

@@ -13,19 +13,19 @@ const Profile = () => {
             
             <h1 className="text-center font-caveat text-2xl font-semibold mt-5 mb-5">Profile</h1>
 
-            <div className="container mx-auto flex lg:justify-around mb-10 flex-col lg:flex-row md:flex-row justify-center items-center">
-                <div>
+            <div className="container mx-auto flex lg:justify-around mb-10 flex-col lg:flex-row md:flex-row">
+                <div className="mx-auto">
                     <img src="../src/assets/img/profile.jpg" alt="" className="w-[200px] rounded-full" />
                 </div>
 
-                <div className="mt-5 md:ml-10">
+                <div className="mt-5 md:ml-10 mx-auto">
                     <p className="text-center lg:text-left md:text-left">E-Mail : example@gmail.com</p>
                     <h2 className="mt-5 font-semibold text-xl">Resep vaforite</h2>
 
                     <Card image="../src/assets/img/card-2.png" judul="Sup Iga" content="Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ..." />
                 </div>
 
-                <div className="ml-10">
+                <div className="ml-10 mr-5">
                     <h2 className="font-semibold text-xl mt-10">Tambah Resep Sendiri</h2>
                     <form>
                         <InputForm
