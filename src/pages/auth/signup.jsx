@@ -1,13 +1,38 @@
-import signup from "../../assets/img/signup.png"
-import InputForm from "../../components/input/Index"
+import Label from "../../components/input/Label"
+import Input from "../../components/input/Input"
 import Button from "../../components/Button"
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"
+import { auth } from "../../firebase-config"
 
 
 const SignUp = () => {
+    const [signupEmail, setSignupEmail] = useState("")
+    const [signupPassword, setSignupPassword] = useState("")
 
+    const [user, setUser] = useState({})
+
+    onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser)
+    })
+
+    const signup = async (event) => {
+        event.preventDefault()
+        try{
+        await createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+        console.log(user)
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    const logout = async () => {
+        await signOut(auth)
+    }
 
     return(
+        <div>
         <div className="flex justify-center items-center lg:flex-row md:flex-row flex-col container h-screen mx-auto">
                 <div className="lg:order-1 md:order-1 order-2">
                     <h1 className="font-poppins lg:text-[25px] text-[18px]">Sign Up</h1>
@@ -15,29 +40,29 @@ const SignUp = () => {
 
                     <div className="lg:w-[500px] w-[300px]">
                     
-                        <form>
-                            <InputForm 
-                            name="nama"
-                            label="Nama :"
-                            placeholder="ketikan nama ..."
-                            type="text"
-                            id="nama"
-                            />
-
-                            <InputForm 
+                        <form onSubmit={signup}> 
+                            <Label>E-Mail</Label>
+                            <Input
                             name="email"
                             label="E-Mail :"
                             placeholder="example@gmail.com"
                             type="email"
                             id="email"
+                            onChange={(event) => {
+                                setSignupEmail(event.target.value)
+                            }}
                             />
 
-                            <InputForm 
+                            <Label>Password</Label>
+                            <Input
                             name="password"
                             label="Password :"
                             placeholder="*****"
                             type="password"
                             id="password"
+                            onChange={(event) => {
+                                setSignupPassword(event.target.value)
+                            }}
                             />
 
                             <Button
@@ -49,8 +74,18 @@ const SignUp = () => {
                     </div>
                 </div>
                 <div className="lg:order-2 md:order-2 order-1"> 
-                    <img src={signup} alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
+                    <img src="../src/assets/img/signup.png" alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
                 </div>
+        </div>
+            <div>
+                <h4>User Logged In: </h4>
+                {user?.email}
+
+                <Button
+                text="Logout"
+                onClick={logout} 
+                />
+            </div>                
         </div>
     )
 }

@@ -1,10 +1,24 @@
-import login from "../../assets/img/login.png"
-import InputForm from "../../components/input/Index"
+import Label from "../../components/input/Label"
+import Input from "../../components/input/Input"
 import Button from "../../components/Button"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../../firebase-config"
 
 const Login = () => {
+    const [loginEmail, setLoginEmail] = useState("")
+    const [loginPassword, setLoginPassword] = useState("")
+    const login = async (event) => {
+        event.preventDefault()
+        try{
+        const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+        console.log(user)
+        } catch (error) {
+            console.log(error.message)
+        }
+        window.location.href = "/"
+    }
 
     return(
         <div className="flex justify-center items-center lg:flex-row md:flex-row flex-col container h-screen mx-auto">
@@ -13,19 +27,27 @@ const Login = () => {
                     <p className="text-[12px]">Don’t have an account ?<Link to="/signup"><u>create a new account</u></Link></p>
 
                     <div className="lg:w-[500px] w-[300px]">
-                        <form>
-                            <InputForm 
+                        <form onSubmit={login}>
+                            <Label>E-Mail</Label>
+                            <Input
                             name="email"
                             label="E-Mail :"
                             placeholder="example@gmail.com"
                             type="email"
+                            onChange={(event) => {
+                                setLoginEmail(event.target.value)
+                            }}
                             />
 
-                            <InputForm 
+                            <Label>Password</Label>
+                            <Input
                             name="password"
                             label="Password :"
                             placeholder="*****"
                             type="password"
+                            onChange={(event) => {
+                                setLoginPassword(event.target.value)
+                            }}
                             />
 
                             <Button
@@ -39,7 +61,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="lg:order-2 md:order-2 order-1"> 
-                    <img src={login} alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
+                    <img src="../src/assets/img/login.png" alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
                 </div>
         </div>
     )

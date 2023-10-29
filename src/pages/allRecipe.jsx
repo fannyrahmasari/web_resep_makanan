@@ -1,155 +1,54 @@
 import Navbar from "../components/Navbar"
-import InputForm from "../components/input/Index"
+import Input from "../components/input/Input"
 import Footer from "../components/Footer"
-import Card2 from "../components/Card-2"
 import Button from "../components/Button"
 import { useState, useEffect } from "react"
-import { uid } from "uid"
-import axios from "axios"
-import Upload from "../components/uploaded"
+import { db } from "../firebase-config"
+import {collection, getDocs, addDoc, updateDoc, deleteDoc, doc} from "firebase/firestore"
+import Label from "../components/input/Label"
+
 
 const AllRecipe = () => {
-    const [ reseps, setReseps ] = useState([])
+    const [newName,setNewName] = useState("")
+    const [newDeskription,setNewDeskription] = useState("")
+    const [newMaterial,setNewMaterial] = useState("")
+    const [newMake,setNewMake] = useState("")
+    
+    const [reseps, setReseps] = useState([])
+    const resepsCollectionRef = collection(db, "resep")
 
-    const [isUpdate, setIsUpdate] = useState(
-        {
-            id: null,
-            status: false
-        }
-    )
-    const [image, setImage] = useState('')
-    const [imagePreview, setImagePreview] = useState(null)
+    const createResep = async (event) => {
+        event.preventDefault()
+        await addDoc(resepsCollectionRef, {
+            name: newName,
+            deskription: newDeskription,
+            material: newMaterial,
+            make: newMake
+        })
+    }
 
-    const [formData, setFormData] = useState(
-        {
-            nama: '',
-            deskripsi: '',
-            bahan: '',
-            cara_membuat: '',
-            image: ''
-        },
-    )
+    const updateResep = async (id) => {
+        const resepDoc = doc(db, "resep", id)
+        
+        await updateDoc(resepDoc, newFields)
+    }
+
+    const deleteResep = async (id) => {
+        const resepDoc = doc(db, "resep", id)
+        await deleteDoc(resepDoc)
+    }
 
     useEffect(() => {
-        axios.get("https://651a7d3e340309952f0d621e.mockapi.io/reseps").then((res) => {
-            console.log(res.data)
-            setReseps(res?.data ?? [])
-        })
-    }, [])
-
-    function handleChange(e){
-        let data = { ...formData }
-        data[e.target.name] = e.target.value
-        setFormData(data)
-    }
-
-    function handleSubmit(e){
-        e.preventDefault()
-        alert("Oke")
-        let data = [ ...reseps ]
-
-        if(isUpdate.status){
-            data.forEach((resep) => {
-                if(resep.id === isUpdate.id){
-                    resep.nama = formData.nama
-                    resep.deskripsi = formData.deskripsi
-                    resep.bahan = formData.bahan
-                    resep.buat = formData.buat 
-                    resep.image = formData.image
-                }
-            })
-
-            axios.put(`https://651a7d3e340309952f0d621e.mockapi.io/reseps/${isUpdate.id}`, {
-                nama: formData.nama,
-                deskripsi: formData.deskripsi,
-                bahan: formData.bahan,
-                buat: formData.buat,
-                image: formData.image,
-            }).then((res) => {
-                alert('Berhasil Mengedit Data')
-            })
-        }else{
-            let newData = {
-                id: uid(), 
-                nama: formData.nama,
-                deskripsi: formData.deskripsi,
-                bahan: formData.bahan,
-                buat: formData.buat,
-                image: formData.image,
-            }
-            data.push(newData)
-
-            axios.post('https://651a7d3e340309952f0d621e.mockapi.io/reseps', newData).then((res) => {
-                alert("Berhasil Menyimpan Data")
-            })
+        const getReseps = async () => {
+            const data = await getDocs(resepsCollectionRef)
+            setReseps(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
         }
 
-        setIsUpdate({id: null, status: false})
-        setReseps(data)
-        setIsUpdate({id: null, status: "false"})
+        getReseps()
+    },[])
 
-        console.log('image', image)
-    }
-
-    function handleEdit(id){
-        let data = [...reseps]
-        let foundData = data.find((resep) => resep.id === id)
-        setFormData(
-            {
-                nama: foundData.nama,
-                deskripsi: foundData.deskripsi,
-                bahan: foundData.bahan,
-                buat: foundData.buat,
-                image: foundData.image,
-            }
-        )
-        setIsUpdate({id: id, status: true})
-    }
-
-    function handleDelete(id){
-       let data = [...reseps]
-       let filteredData = data.filter(resep => resep.id !== id)
-
-       axios.delete(`https://651a7d3e340309952f0d621e.mockapi.io/reseps/${id}`).then((res) => {
-        alert('Berhasil Menghapus Data')
-       })
-
-       setReseps(filteredData)
-    }
-
-    function onImageUpload(e){
-        const file = e.target.files[0]
-        setImage(file)
-
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = () => {
-            setImagePreview(URL.createObjectURL(file))
-        }
-
-        const formData = new FormData()
-        formData.append('file', file)
-
-        axios.post('https://651a7d3e340309952f0d621e.mockapi.io/reseps',formData, {
-            headers: {
-                'Content-Type' : 'multipart/form-data'
-            }
-        })
-        .then((imageResponse) => {
-            const imageUrl = imageResponse.data.imageUrl
-
-            setFormData({
-                ...formData,
-                image: imageUrl,
-            })
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    }
 
     
-
     return(
         <div>
         <div className="bg-ungu">
@@ -158,78 +57,92 @@ const AllRecipe = () => {
         <h1 className="text-center mt-10 text-2xl font-caveat">All Recipes</h1>
 
         <div className="container flex flex-col lg:flex-row justify-evenly mx-auto  md:flex-row  mb-10 ">
-        <div className="lg:w-[400px] md:w-[300px] w-[500px] mx-auto">
-            <form onSubmit={handleSubmit}>
-                <InputForm
-                    htmlFor="nama" 
+        <div className="lg:w-[400px] md:w-[300px] w-[300px] mx-auto">
+            <form onSubmit={createResep}>
+                <Label>Nama Resep</Label>
+                <Input 
                     type="text"
-                    label="Nama Resep"
                     placeholder="Ketikan Nama Resep ..."
-                    name="nama"
-                    onChange={handleChange}
-                    value={formData.nama}
+                    name="name"
+                    id="name"
+                    onChange={(event) => {
+                        setNewName(event.target.value)
+                    }}
                     />
 
-                    <InputForm
-                    htmlFor="nama" 
-                        type="text"
-                        label="Deskripsi"
-                        placeholder="Ketikan Deskripsi Resep..."
-                        name="deskripsi"
-                        onChange={handleChange}
-                        value={formData.deskripsi}
-                        />
+                <Label>Deskripsi</Label>
+                <Input
+                    htmlFor="deskription" 
+                    type="text"
+                    placeholder="Ketikan Deskripsi Resep..."
+                    id="deskription"
+                    name="deskription"
+                    onChange={(event) => {setNewDeskription(event.target.value)}}
+                />
 
-                        <InputForm
-                        htmlFor="nama" 
-                        type="text"
-                        label="Bahan - bahan"
-                        placeholder="Ketikan Bahan - bahan resep ..."
-                        name="bahan"
-                        onChange={handleChange}
-                        value={formData.bahan}
-                        />
+                <Label>Bahan - bahan</Label>
+                <Input
+                    htmlFor="material" 
+                    type="text"
+                    placeholder="Ketikan Bahan - bahan resep ..."
+                    id="material"
+                    name="material"
+                    onChange={(event) => {setNewMaterial(event.target.value)}}
+                />
+                
+                <Label>Cara Membuat</Label>
+                <Input
+                    htmlFor="make" 
+                    type="text"
+                    placeholder="Ketikan Ketikan Cara buat Resep ..."
+                    id="make"
+                    name="make"
+                    onChange={(event) => {setNewMake(event.target.value)}}
+                />
 
-                        <InputForm
-                        htmlFor="nama" 
-                        type="text"
-                        label="Cara buat"
-                        placeholder="Ketikan Ketikan Cara buat Resep ..."
-                        name="buat"
-                        onChange={handleChange}
-                        value={formData.buat}
-                        />
+                <Label>Gambar</Label>
+                <Input
+                    htmlFor="image" 
+                    type="file"
+                    label="Image"
+                    name="image"
+                    id="image"
+                />
 
-                        <Upload
-                        onChange={(e) => onImageUpload(e)}
-                        img={imagePreview}
-                        />
-
-                        {/* <InputForm
-                        htmlFor="image" 
-                        type="file"
-                        label="Image"
-                        name="image"
-                        id="image"
-                        // onChange={handleUploadChange}
-                        /> */}
-
-                        <Button
-                        text="Kirim"
-                        classname="bg-ungu text-white font-semibold mt-5"
-                        />
-                    </form>
+                <Button
+                    type="submit"
+                    text="Kirim"
+                    classname="bg-ungu text-white font-semibold mt-5"
+                />
+                
+                </form>
             </div>
-            <div className="w-[600px]">
+            <div className="w-[400px] lg:w-[500px] md:w-[500px] mx-auto">
                 <img src="../src/assets/img/add.png" alt="" />
             </div>
         </div>
-        
-            <Card2
-            src={image}
-            handleDelete={handleDelete} 
-            handleEdit={handleEdit} 
-            data={reseps} /> 
+
+            <div>
+                <h1>TESTING</h1>
+                {reseps.map((resep) => {
+                    return(
+                    <div key={resep.id}>
+                        <h1>Name : {resep.name}</h1>
+                        <h1>Deskription : {resep.deskription}</h1>
+                        <h1>Material : {resep.material}</h1>
+                        <h1>Make : {resep.make}</h1>
+                        <Button
+                        text="Update"
+                        onClick={() => {updateResep(resep.id)}} 
+                        />
+                        <Button
+                        text="Delete" 
+                        onClick={() => {deleteResep(resep.id)}}
+                        />
+                    </div>
+                    )
+                })}
+            </div>
             
         <Footer />
         </div>

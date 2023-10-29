@@ -1,10 +1,10 @@
 const Label = (props) => {
-    const { htmlFor, children } = props
+    const { children } = props
 
     return(
         <label 
-        htmlFor={htmlFor}
-        className="block text-gray-900 mt-5 text-sm font-bold mb-3"
+        htmlFor=""
+        className="mt-5"
         >
             {children}
         </label>

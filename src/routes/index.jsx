@@ -5,9 +5,6 @@ import SignUp from '../pages/auth/signup'
 import AllRecipe from '../pages/allRecipe'
 import Profile from '../pages/profile'
 import DetailRecipes from '../pages/detailRecipes'
-import firebaseConfig from '../utils/firebase/index'
-
-console.log(firebaseConfig)
 
 function App() {
 
