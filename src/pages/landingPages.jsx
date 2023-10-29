@@ -23,8 +23,8 @@ const LandingPages = () => {
                     With our favorite recipe.
 
                     <Button
-                    onClick={() => navigate('/add')} 
-                    text="Add Recipe"
+                    onClick={() => navigate('/allrecipe')} 
+                    text="Explore Recep"
                     classname="font-poppins font-normal border border-white hover:bg-purple-400 hover:text-white hover:border-none mt-5 "
                     />
 

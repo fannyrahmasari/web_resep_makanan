@@ -1,15 +1,42 @@
-const Card2 = (props) => {
-    const { image, judul, content, onClick = () => {} } = props
+import Button from "./Button"
+import { Link } from "react-router-dom"
+const Card2 = ({data, handleEdit, handleDelete, src}) => {
 
     return(
-           <div className="max-w-sm lg:w-[300px] w-[200px] lg:h-[420px] rounded overflow-hidden shadow-lg">
-            <img src={image} alt="" className="w-full h-[200px]" />
-            <div className="px-6 py-4" onClick={onClick}>
-                <div className="font-bold text-[12px] lg:text-[14px] mb-2">{judul}</div>
-                <p className="text-gray-700 text-[10px] lg:text-[15px]">
-                {content}
-                </p>
-            </div>
+           <div className="container mx-auto justify-center flex flex-wrap gap-2 mb-10">
+            {data.map((resep) => {
+                return(
+                    // <Link to={`/detail/${resep.id}`}>
+                    <div key={resep.id}>
+                            <div className="max-w-sm rounded overflow-hidden shadow-lg">
+                                <div>
+                                    <img src={src.image} alt="" className="w-[500px] h-[200px]" />
+                                </div> 
+                                <div className="px-6 py-4">
+                                    <div className="font-bold text-xl mb-2">{resep.nama}</div>
+                                    <p className="text-gray-700 text-base h-20">
+                                    {resep.deskripsi}
+                                    </p>
+                                    
+                                    <div className="flex gap-1">
+                                        <Button 
+                                        text="Edit"
+                                        classname="bg-blue-300 text-white"
+                                        onClick={() => handleEdit(resep.id)}
+                                        />
+                                        <Button 
+                                        text="Delete"
+                                        classname="bg-red-300 text-white"
+                                        onClick={() => handleDelete(resep.id)}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    // </Link>
+                )
+                
+            })}
             </div>
     )
 }

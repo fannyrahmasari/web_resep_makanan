@@ -3,29 +3,13 @@ import InputForm from "../components/input/Index"
 import Footer from "../components/Footer"
 import Card2 from "../components/Card-2"
 import Button from "../components/Button"
-import { useState } from "react"
-import {Link} from 'react-router-dom'
+import { useState, useEffect } from "react"
 import { uid } from "uid"
+import axios from "axios"
+import Upload from "../components/uploaded"
 
 const AllRecipe = () => {
-    const [ reseps, setReseps ] = useState([
-        {
-            id: 1,
-            nama: "Sup Iga",
-            deskripsi: "Sup iga terdiri dari potongan daging iga yang dimasak hingga lembut, kentang, wortel, dan ...",
-            bahan: "example",
-            buat:"example",
-            image:"example3"
-        },
-        {
-            id: 2,
-            nama: "Es Selendang Mayang",
-            deskripsi: "Es selendang mayang isinya mirip seperti puding atau kue lapis yang terbuat dari tepung sagu ...",
-            bahan:"example5",
-            buat:"example",
-            image:"example6"
-        }
-    ])
+    const [ reseps, setReseps ] = useState([])
 
     const [isUpdate, setIsUpdate] = useState(
         {
@@ -33,16 +17,25 @@ const AllRecipe = () => {
             status: false
         }
     )
+    const [image, setImage] = useState('')
+    const [imagePreview, setImagePreview] = useState(null)
 
     const [formData, setFormData] = useState(
         {
             nama: '',
             deskripsi: '',
             bahan: '',
-            buat: '',
+            cara_membuat: '',
             image: ''
         },
     )
+
+    useEffect(() => {
+        axios.get("https://651a7d3e340309952f0d621e.mockapi.io/reseps").then((res) => {
+            console.log(res.data)
+            setReseps(res?.data ?? [])
+        })
+    }, [])
 
     function handleChange(e){
         let data = { ...formData }
@@ -65,24 +58,42 @@ const AllRecipe = () => {
                     resep.image = formData.image
                 }
             })
+
+            axios.put(`https://651a7d3e340309952f0d621e.mockapi.io/reseps/${isUpdate.id}`, {
+                nama: formData.nama,
+                deskripsi: formData.deskripsi,
+                bahan: formData.bahan,
+                buat: formData.buat,
+                image: formData.image,
+            }).then((res) => {
+                alert('Berhasil Mengedit Data')
+            })
         }else{
-            data.push(
-                {
-                    id: uid(), 
-                    nama: formData.nama,
-                    deskripsi: formData.deskripsi,
-                    bahan: formData.bahan,
-                    buat: formData.buat,
-                    image: formData.image,
-                }
-            )
+            let newData = {
+                id: uid(), 
+                nama: formData.nama,
+                deskripsi: formData.deskripsi,
+                bahan: formData.bahan,
+                buat: formData.buat,
+                image: formData.image,
+            }
+            data.push(newData)
+
+            axios.post('https://651a7d3e340309952f0d621e.mockapi.io/reseps', newData).then((res) => {
+                alert("Berhasil Menyimpan Data")
+            })
         }
+
+        setIsUpdate({id: null, status: false})
         setReseps(data)
+        setIsUpdate({id: null, status: "false"})
+
+        console.log('image', image)
     }
 
     function handleEdit(id){
-        let data = [...contacts]
-        let foundData = data.find((contact) => contact.id === id)
+        let data = [...reseps]
+        let foundData = data.find((resep) => resep.id === id)
         setFormData(
             {
                 nama: foundData.nama,
@@ -95,6 +106,49 @@ const AllRecipe = () => {
         setIsUpdate({id: id, status: true})
     }
 
+    function handleDelete(id){
+       let data = [...reseps]
+       let filteredData = data.filter(resep => resep.id !== id)
+
+       axios.delete(`https://651a7d3e340309952f0d621e.mockapi.io/reseps/${id}`).then((res) => {
+        alert('Berhasil Menghapus Data')
+       })
+
+       setReseps(filteredData)
+    }
+
+    function onImageUpload(e){
+        const file = e.target.files[0]
+        setImage(file)
+
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+            setImagePreview(URL.createObjectURL(file))
+        }
+
+        const formData = new FormData()
+        formData.append('file', file)
+
+        axios.post('https://651a7d3e340309952f0d621e.mockapi.io/reseps',formData, {
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
+        })
+        .then((imageResponse) => {
+            const imageUrl = imageResponse.data.imageUrl
+
+            setFormData({
+                ...formData,
+                image: imageUrl,
+            })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+    
 
     return(
         <div>
@@ -103,16 +157,8 @@ const AllRecipe = () => {
         </div>
         <h1 className="text-center mt-10 text-2xl font-caveat">All Recipes</h1>
 
-        <div className="mx-auto">
-                <div className="mx-auto w-[200px] lg:w-[500px] md:w-[500px]">
-                    <InputForm
-                    placeholder="Search ..."
-                    />
-                </div>
-            </div>
-
-        <div className="container mx-auto  md:flex-row  mb-10">
-        <div className="lg:w-[400px] md:w-[300px] w-[300px] mx-auto">
+        <div className="container flex flex-col lg:flex-row justify-evenly mx-auto  md:flex-row  mb-10 ">
+        <div className="lg:w-[400px] md:w-[300px] w-[500px] mx-auto">
             <form onSubmit={handleSubmit}>
                 <InputForm
                     htmlFor="nama" 
@@ -147,21 +193,26 @@ const AllRecipe = () => {
                         <InputForm
                         htmlFor="nama" 
                         type="text"
-                        label="Cara Buat"
-                        placeholder="Ketikan Ketikan Cara Buat Resep ..."
+                        label="Cara buat"
+                        placeholder="Ketikan Ketikan Cara buat Resep ..."
                         name="buat"
                         onChange={handleChange}
                         value={formData.buat}
                         />
 
-                        <InputForm
-                        htmlFor="nama" 
+                        <Upload
+                        onChange={(e) => onImageUpload(e)}
+                        img={imagePreview}
+                        />
+
+                        {/* <InputForm
+                        htmlFor="image" 
                         type="file"
                         label="Image"
                         name="image"
-                        onChange={handleChange}
-                        // value={formData.image}
-                        />
+                        id="image"
+                        // onChange={handleUploadChange}
+                        /> */}
 
                         <Button
                         text="Kirim"
@@ -169,38 +220,17 @@ const AllRecipe = () => {
                         />
                     </form>
             </div>
-        
-
-            <div className="flex lg:flex-row md:flex-row justify-center items-center flex-wrap mb-12 gap-4 mt-10">
-            {
-                reseps.map((resep) => {
-                    return(
-                        <Link to= {
-                            {
-                                pathname : `/detail/${resep.id}`,
-                                state : {
-                                    nama : resep.nama,
-                                    deskripsi : resep.deskripsi,
-                                    bahan: resep.bahan,
-                                    buat : resep.buat,
-                                    image: resep.image
-                                },
-                            }
-                        }
-                        key={resep.id}
-                        >
-                            <Card2
-                            image={`assets/img/${resep.image}`}
-                            judul={resep.nama}
-                            content={resep.deskripsi}
-                            />
-                        </Link>
-                    )
-                })
-            }
-            </div>    
+            <div className="w-[600px]">
+                <img src="../src/assets/img/add.png" alt="" />
+            </div>
         </div>
-
+        
+            <Card2
+            src={image}
+            handleDelete={handleDelete} 
+            handleEdit={handleEdit} 
+            data={reseps} /> 
+            
         <Footer />
         </div>
     )

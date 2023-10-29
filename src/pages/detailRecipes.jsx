@@ -3,9 +3,7 @@ import Footer from "../components/Footer"
 import Button from "../components/Button"
 import card2 from '../assets/img/card-2.png'
 import { useParams } from 'react-router-dom';
-
-
-const DetailRecipes = ({ reseps, handleEdit, handleDelete }) => {
+const DetailRecipes = ({reseps}) => {
     const { id } = useParams();
 
     if (!reseps) {
@@ -18,7 +16,6 @@ const DetailRecipes = ({ reseps, handleEdit, handleDelete }) => {
         return <div>Resep tidak ditemukan.</div>;
     }
 
-   
     return(
         <div>
            <div className="bg-ungu">
@@ -46,20 +43,6 @@ const DetailRecipes = ({ reseps, handleEdit, handleDelete }) => {
                             <div className="flex mb-10">
                                 <p>{resep.buat}</p>
                             </div>
-                        </div>
-
-                        <div className="flex gap-2 mb-10">
-                            <Button
-                            onClick={() => handleEdit(resep.id)}
-                            text="Edit"
-                            classname="bg-blue-400 text-white" 
-                            />
-
-                            <Button
-                            onClick={() => handleDelete(resep.id)}
-                            text="Delete"
-                            classname="bg-red-400 text-white" 
-                            />
                         </div>
                     </div>
                 </div>
