@@ -12,7 +12,7 @@ const LandingPages = () => {
     const navigate = useNavigate()
 
     return(
-    <Fragment>
+    <Fragment className="container mx-auto">
         <div className="bg-ungu w-full lg:h-1/2 md:h-1/2 h-1/2">
             <Navbar />
             <div className="container mx-auto flex flex-col lg:flex-row md:flex-row justify-evenly items-center">
