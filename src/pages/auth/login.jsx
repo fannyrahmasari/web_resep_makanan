@@ -1,6 +1,9 @@
 import Label from "../../components/input/Label"
 import Input from "../../components/input/Input"
 import Button from "../../components/Button"
+
+import LoginImage from '../../assets/img/login.png'
+
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { signInWithEmailAndPassword } from "firebase/auth"
@@ -18,7 +21,7 @@ const Login = () => {
         } catch (error) {
             console.log(error.message)
         }
-        window.location.href = "/"
+        window.location.href = "/landingpages"
     }
 
     return(
@@ -65,7 +68,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="lg:order-2 md:order-2 order-1"> 
-                    <img src="../src/assets/img/login.png" alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
+                    <img src={LoginImage} alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
                 </div>
         </div>
     )
