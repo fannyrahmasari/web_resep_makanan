@@ -4,18 +4,11 @@ import Button from "../../components/Button"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../../firebase-config"
 
 const Login = () => {
     const [loginEmail, setLoginEmail] = useState("")
     const [loginPassword, setLoginPassword] = useState("")
-
-    const [user, setUser] = useState({})
-
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser)
-    })
 
     const login = async (event) => {
         event.preventDefault()
@@ -53,18 +46,19 @@ const Login = () => {
                             label="Password :"
                             placeholder="*****"
                             type="password"
+                            id="password"
                             onChange={(event) => {
                                 setLoginPassword(event.target.value)
                             }}
                             />
                             
-                            <Link to={`/navbar?email=${user?.email}`}>
+                            {/* <Link to={`/navbar?email=${user?.email}`}> */}
                             <Button
                             type="submit"
                             text="Log In"
                             classname="bg-ungu text-white font-semibold mt-5"
                             />
-                            </Link>
+                            {/* </Link> */}
 
                         </form>
                        
@@ -73,9 +67,6 @@ const Login = () => {
                 <div className="lg:order-2 md:order-2 order-1"> 
                     <img src="../src/assets/img/login.png" alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
                 </div>
-
-                <h4>User Logged In: </h4>
-                {user?.email}
         </div>
     )
 }
