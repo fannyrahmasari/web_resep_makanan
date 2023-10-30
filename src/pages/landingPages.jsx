@@ -24,7 +24,7 @@ const LandingPages = () => {
 
                     <Button
                     onClick={() => navigate('/allrecipe')} 
-                    text="Explore Recep"
+                    text="Explore Recipes"
                     classname="font-poppins font-normal border border-white hover:bg-purple-400 hover:text-white hover:border-none mt-5 "
                     />
 

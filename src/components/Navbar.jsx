@@ -1,8 +1,14 @@
 import Button from "./Button"
 import hamburger from "../assets/icons/hamburger.png"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
+import { useState } from "react"
+
+
 const Navbar = () => {
     const navigate = useNavigate()
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const alamatEmailPengguna = queryParams.get("email");
 
     return(
         <div className="">
@@ -16,13 +22,14 @@ const Navbar = () => {
                                 <li><a className="hover:border-b-4 border-gray-900" href="">Recipies</a></li>
                                 <li><a className="hover:border-b-4 border-gray-900" href="">About</a></li>
                                 <li><a className="hover:border-b-4 border-gray-900" href="">Contact Us</a></li>
-                                <li><a onClick={() => navigate('/profile')} className="hover:border-b-4 border-gray-900" href="">Profile</a></li>
+                                <li><a onClick={() => navigate('/add')} className="hover:border-b-4 border-gray-900" href="">Add Recipes</a></li>
                             </ul>
                         </div>
 
                     <div className="lg:flex md:flex hidden font-normal">
-                        <Button onClick={() => navigate('/login')} classname="text-white font-semibold" type="button" text="Log In" />
-                        <Button onClick={() => navigate('/signup')} classname="text-white font-semibold"  type="button" text="Sign Up" />
+                        {alamatEmailPengguna}
+                        {/* <Button onClick={() => navigate('/login')} classname="text-white font-semibold" type="button" text="Log In" />
+                        <Button onClick={() => navigate('/signup')} classname="text-white font-semibold"  type="button" text="Sign Up" /> */}
                     </div>
                 </div>
             </div>

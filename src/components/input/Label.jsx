@@ -4,7 +4,7 @@ const Label = (props) => {
     return(
         <label 
         htmlFor=""
-        className="mt-5"
+        className=""
         >
             {children}
         </label>

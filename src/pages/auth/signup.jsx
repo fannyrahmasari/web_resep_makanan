@@ -11,11 +11,11 @@ const SignUp = () => {
     const [signupEmail, setSignupEmail] = useState("")
     const [signupPassword, setSignupPassword] = useState("")
 
-    const [user, setUser] = useState({})
+    // const [user, setUser] = useState({})
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser)
-    })
+    // onAuthStateChanged(auth, (currentUser) => {
+    //     setUser(currentUser)
+    // })
 
     const signup = async (event) => {
         event.preventDefault()
@@ -78,8 +78,8 @@ const SignUp = () => {
                 </div>
         </div>
             <div>
-                <h4>User Logged In: </h4>
-                {user?.email}
+                {/* <h4>User Logged In: </h4>
+                {user?.email} */}
 
                 <Button
                 text="Logout"

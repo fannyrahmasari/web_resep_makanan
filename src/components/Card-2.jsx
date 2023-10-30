@@ -6,7 +6,6 @@ const Card2 = () => {
            <div className="container mx-auto justify-center flex flex-wrap gap-2 mb-10">
            
                 return(
-                    // <Link to={`/detail/${resep.id}`}>
                     <div>
                             <div className="max-w-sm rounded overflow-hidden shadow-lg">
                                 <div>
@@ -31,7 +30,6 @@ const Card2 = () => {
                                 </div>
                             </div>
                     </div>
-                    // </Link>
                 )
             </div>
     )

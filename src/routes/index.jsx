@@ -4,7 +4,8 @@ import Login from '../pages/auth/login'
 import SignUp from '../pages/auth/signup'
 import AllRecipe from '../pages/allRecipe'
 import Profile from '../pages/profile'
-import DetailRecipes from '../pages/detailRecipes'
+import AddEditResep from '../pages/addEditResep'
+import Navbar from '../components/Navbar'
 
 function App() {
 
@@ -16,7 +17,9 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/allrecipe' element={<AllRecipe />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/detail/:id' element={<DetailRecipes />} />
+          <Route path='/add' element={<AddEditResep />} />
+          <Route path='/update/:id' element={<AddEditResep />} />
+          <Route path='/navbar' element={<Navbar />} />
         </Routes>
     </Router>
   )
