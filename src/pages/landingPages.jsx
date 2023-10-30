@@ -4,6 +4,8 @@ import Card from "../components/Card"
 import InputForm from "../components/input/Index"
 import Footer from "../components/Footer"
 
+import heroImage from '../assets/img/hero-image.png'
+
 import { Fragment } from "react"
 import { useNavigate } from "react-router-dom"
 const LandingPages = () => {
@@ -15,7 +17,7 @@ const LandingPages = () => {
             <Navbar />
             <div className="container mx-auto flex flex-col lg:flex-row md:flex-row justify-evenly items-center">
                 <div className="flex justify-center items-center order-1 lg:order-2 md:order-2">
-                    <img src="../src/assets/img/hero-image.png" alt="gambar" className="w-[300px] lg:w-[400px] md:w-[300px] " />
+                    <img src={heroImage} alt="gambar" className="w-[300px] lg:w-[400px] md:w-[300px] " />
                 </div>
 
                 <div className="mb-5 justify-center items-center flex order-2 lg:order-1 md:order-1">
