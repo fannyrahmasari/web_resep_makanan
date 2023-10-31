@@ -39,7 +39,7 @@ const Navbar = () => {
                 <Button
                 onClick={() => navigate('/login')}  
                 text="Login"
-                classname="text-xl text-white bg-purple-400 md:ml-10"
+                classname="text-xl text-white bg-purple-500 hover:bg-purple-400 md:ml-10"
                 />
             </ul>
             </div>
