@@ -62,8 +62,9 @@ const AllRecipe = () => {
         <div className="bg-ungu">
             <Navbar />
         </div>
-        <h1 className="text-center mt-10 text-2xl font-caveat mb-10">All Recipes</h1>
-
+        
+        <h1 className="mt-[140px] mb-5 text-center font-caveat text-4xl">All Recipe</h1>
+    
         <div className="container mx-auto flex flex-wrap flex-col lg:flex-row md:flex-row gap-2 justify-center items-center">
             {reseps && reseps.map((item) => (
                 <div key={item.id} className="lg:w-[300px] w-[300px] shadow-lg p-4">

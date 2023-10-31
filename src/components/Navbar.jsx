@@ -7,7 +7,7 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     let Links = [
-        {name: "Home", link:"/"},
+        {name: "Home", link:"/landingpages"},
         {name: "About", link:"/"},
         {name: "Contact", link:"/"}
     ]
@@ -36,11 +36,18 @@ const Navbar = () => {
                         </li>
                     ))
                 }
-                <Button
-                onClick={() => navigate('/')}  
-                text="Login"
-                classname="text-xl text-white bg-purple-500 hover:bg-purple-400 md:ml-10"
-                />
+                <div className="flex gap-2 md:gap-0">
+                    <Button
+                    onClick={() => navigate('/')}  
+                    text="Login"
+                    classname="text-xl text-white bg-purple-500 hover:bg-purple-400 md:ml-10"
+                    />
+                    <Button
+                    onClick={() => navigate('/add')}  
+                    text="Add Recipe"
+                    classname="text-xl text-white bg-purple-500 hover:bg-purple-400 md:ml-10"
+                    />
+                </div>
             </ul>
             </div>
         </div>
