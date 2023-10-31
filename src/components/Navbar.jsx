@@ -1,31 +1,42 @@
+import { useState } from "react"
 import Button from "./Button"
-import hamburger from "../assets/icons/hamburger.png"
-import { useNavigate } from "react-router-dom"
 
 const Navbar = () => {
-    const navigate = useNavigate()
+    let Links = [
+        {name: "Home", link:"/"},
+        {name: "About", link:"/"},
+        {name: "Contact", link:"/"}
+    ]
+
+    let [open, setOpen] = useState(false)
 
     return(
-        <div className="">
-            <div className="container mx-auto p-4 pt-2 font-poppins font-semibold">
-                <div className="flex items-center justify-between">
-                    <h2 onClick={() => navigate('/')} className="text-black cursor-pointer sm:py-2">Aneka<span className="text-white">Rasa</span></h2>
-                    <img className="lg:hidden md:hidden" src={hamburger} alt="" />
+        <div className="shadow-md w-full fixed top-0 left-0">
+            <div className="md:flex items-center justify-between bg-ungu py-4 md:px-10 px-7">
+            <div className="font-bold text-2xl cursor-pointer flex items-center font-poppins text-white">
+                <span className="text-3xl text-indigo-600 mr-1 pt-2">
+                    <ion-icon name="fast-food-outline"></ion-icon>
+                </span>
+                AnekaRasa
+            </div>
 
-                        <div className="hidden lg:block md:block">
-                            <ul className="flex lg:gap-16 md:gap-6 text-white font-normal">
-                                <li><a className="hover:border-b-4 border-gray-900" href="">Recipies</a></li>
-                                <li><a className="hover:border-b-4 border-gray-900" href="">About</a></li>
-                                <li><a className="hover:border-b-4 border-gray-900" href="">Contact Us</a></li>
-                                <li><a onClick={() => navigate('/add')} className="hover:border-b-4 border-gray-900" href="">Add Recipes</a></li>
-                            </ul>
-                        </div>
+            <div onClick={() => setOpen(!open)} className="text-3xl absolute right-8 top-6 cursor-pointer text-white md:hidden">
+                <ion-icon name={open ? 'close':'menu'}></ion-icon>
+            </div>
 
-                    <div className="lg:flex md:flex hidden font-normal">
-                        <Button onClick={() => navigate('/login')} classname="text-white font-semibold" type="button" text="Log In" />
-                        <Button onClick={() => navigate('/signup')} classname="text-white font-semibold"  type="button" text="Sign Up" />
-                    </div>
-                </div>
+            <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-violet-400 md:bg-ungu md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20':'top-[-490px]'}`}>
+                {
+                    Links.map((link) => (
+                        <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
+                            <a href={link.link} className="text-white hover:text-gray-400 duration-500">{link.name}</a>
+                        </li>
+                    ))
+                }
+                <Button 
+                text="Login"
+                classname="text-xl text-white bg-violet-500 md:ml-10"
+                />
+            </ul>
             </div>
         </div>
     )

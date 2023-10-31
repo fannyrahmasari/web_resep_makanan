@@ -18,8 +18,8 @@ const LandingPages = () => {
     return(
     <Fragment>
         <div className="bg-ungu w-full lg:h-1/2 md:h-1/2 h-1/2">
-            <Navbar />
-            <div className="container mx-auto flex flex-col lg:flex-row md:flex-row justify-evenly items-center">
+        <Navbar />
+            <div className="container mx-auto flex flex-col lg:flex-row md:flex-row justify-evenly items-center mt-20">
                 <div className="flex justify-center items-center order-1 lg:order-2 md:order-2">
                     <img src={heroImage} alt="gambar" className="w-[300px] lg:w-[400px] md:w-[300px] " />
                 </div>
