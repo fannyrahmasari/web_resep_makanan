@@ -9,6 +9,7 @@ import { db } from "../firebase-config"
 import { useNavigate } from "react-router-dom"
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore"
 import ModalComp from "../components/ModalComp"
+import Detail from "./detail"
 
 const AllRecipe = () => {
    const [reseps, setReseps] = useState([])
@@ -34,6 +35,10 @@ const AllRecipe = () => {
         unsub()
     }
    },[])
+
+   const handleViewDetail = (resep) => {
+    navigate(`/detail/${resep.id}`, { state: { resep } });
+  };
 
    const handleModal = (item) => {
         setOpen(true)
@@ -84,6 +89,10 @@ const AllRecipe = () => {
         </div>
 
         {open && (
+        <Detail resep={resep} open={open} setOpen={setOpen} handleDelete={handleDelete} />
+        )}
+
+        {/* {open && (
         <ModalComp 
             open={open}
             setOpen={setOpen}
@@ -93,8 +102,8 @@ const AllRecipe = () => {
             deskription={resep.deskription} // Sesuaikan dengan prop yang ada di ModalComp
             ingredients={resep.ingredients} // Sesuaikan dengan prop yang ada di ModalComp
             make={resep.make} // Sesuaikan dengan prop yang ada di ModalComp
-        />
-        )}
+            />
+        )} */}
 
         {/* <Footer /> */}
         </div>

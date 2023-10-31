@@ -5,7 +5,7 @@ import SignUp from '../pages/auth/signup'
 import AllRecipe from '../pages/allRecipe'
 import Profile from '../pages/profile'
 import AddEditResep from '../pages/addEditResep'
-import Navbar from '../components/Navbar'
+import Detail from '../pages/detail'
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/add' element={<AddEditResep />} />
           <Route path='/update/:id' element={<AddEditResep />} />
-          <Route path='/navbar' element={<Navbar />} />
+          <Route path='/detail/:id' element={<Detail />} />
         </Routes>
     </Router>
   )
