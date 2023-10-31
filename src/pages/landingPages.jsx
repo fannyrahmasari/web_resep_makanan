@@ -38,7 +38,8 @@ const LandingPages = () => {
                 </div>
             </div>
         </div>
-  
+        
+        <Footer />
     </Fragment>
     )
 }

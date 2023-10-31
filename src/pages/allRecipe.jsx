@@ -58,16 +58,23 @@ const AllRecipe = () => {
    }
 
     return(
+    <div>
         <div>
-        <div className="bg-ungu">
             <Navbar />
         </div>
-        
-        <h1 className="mt-[140px] mb-5 text-center font-caveat text-4xl">All Recipe</h1>
+
+    <div>
+        <h1 className="mt-[90px] mb-5 text-center font-caveat text-4xl">All Recipe</h1>
+
+        <div className="mx-auto md:w-[500px] w-[300px] mt-5 mb-5">
+            <Input
+            placeholder="Search Recipe ..."
+            />
+        </div>
     
         <div className="container mx-auto flex flex-wrap flex-col lg:flex-row md:flex-row gap-2 justify-center items-center">
             {reseps && reseps.map((item) => (
-                <div key={item.id} className="lg:w-[300px] w-[300px] shadow-lg p-4">
+                <div key={item.id} className="lg:w-[300px] w-[300px] shadow-lg p-4 bg-white">
                     <div>
                         <img src={item.img} className="w-full lg:h-[200px]"/>
                     </div>
@@ -76,18 +83,19 @@ const AllRecipe = () => {
                     <div className="flex mt-5 gap-2">
                         <Button
                         text="Update"
-                        classname="bg-ungu"
+                        classname="bg-ungu text-white"
                         onClick={() => navigate(`/update/${item.id}`)}
                         />
                         <Button
                         text="View"
-                        classname="bg-ungu"
+                        classname="bg-ungu text-white"
                         onClick={() => handleModal(item)}
                         />
                     </div>
                 </div>
             ))}
         </div>
+    </div>
 
         {open && (
         <Detail resep={resep} open={open} setOpen={setOpen} handleDelete={handleDelete} />
@@ -106,7 +114,7 @@ const AllRecipe = () => {
             />
         )} */}
 
-        {/* <Footer /> */}
+        <Footer />
         </div>
     )
 }
