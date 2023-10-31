@@ -21,11 +21,11 @@ const LandingPages = () => {
         <Navbar />
             <div className="container mx-auto flex flex-col h-screen lg:flex-row md:flex-row justify-evenly items-center mt-10">
                 <div className="flex justify-center items-center order-1 lg:order-2 md:order-2">
-                    <img src={heroImage} alt="gambar" className="w-[300px] lg:w-[400px] md:w-[300px]" />
+                    <img src={heroImage} alt="gambar" className="w-[400px] lg:w-[400px] md:w-[300px] " />
                 </div>
 
                 <div className="mb-5 justify-center items-center flex order-2 lg:order-1 md:order-1">
-                    <h1 className="w-[300px] lg:w-[400px] md:w-[200px] lg:text-[36px] font-semibold text-center font-caveat text-[35px]">What are you waiting for? Let's <span className="text-white">cook together</span>, 
+                    <h1 className="w-[300px] md:w-[400px] lg:w-[400px] lg:text-[36px] font-semibold text-center font-caveat text-[35px]">What are you waiting for? Let's <span className="text-white">cook together</span>, 
                     With our favorite recipe.
 
                     <Button

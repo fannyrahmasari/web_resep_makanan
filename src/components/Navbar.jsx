@@ -37,7 +37,7 @@ const Navbar = () => {
                     ))
                 }
                 <Button
-                onClick={() => navigate('/login')}  
+                onClick={() => navigate('/')}  
                 text="Login"
                 classname="text-xl text-white bg-purple-500 hover:bg-purple-400 md:ml-10"
                 />
