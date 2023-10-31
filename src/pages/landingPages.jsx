@@ -78,7 +78,7 @@ const LandingPages = () => {
                         </p>
                     </div>
                     <div className="">
-                            <img src={aboutImage} alt="image" className="lg:w-[500px] lg:h-[400px] md:w-[400px] opacity-80"/>
+                            <img src={aboutImage} alt="image" className="lg:w-[500px] lg:h-[400px] md:w-[400px]"/>
                     </div>
                 </div>
             </div>
