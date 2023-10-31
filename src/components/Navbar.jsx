@@ -1,7 +1,11 @@
-import { useState } from "react"
 import Button from "./Button"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
 
 const Navbar = () => {
+    const navigate = useNavigate()
+
     let Links = [
         {name: "Home", link:"/"},
         {name: "About", link:"/"},
@@ -28,13 +32,14 @@ const Navbar = () => {
                 {
                     Links.map((link) => (
                         <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
-                            <a href={link.link} className="text-gray-800 hover:text-gray-400 duration-500">{link.name}</a>
+                            <a href={link.link} className="text-gray-800 md:text-white hover:text-gray-400 duration-500">{link.name}</a>
                         </li>
                     ))
                 }
-                <Button 
+                <Button
+                onClick={() => navigate('/login')}  
                 text="Login"
-                classname="text-xl text-white bg-violet-500 md:ml-10"
+                classname="text-xl text-white bg-purple-400 md:ml-10"
                 />
             </ul>
             </div>
