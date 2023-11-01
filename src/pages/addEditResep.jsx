@@ -134,7 +134,7 @@ const AddEditResep = () => {
 
             {isSubmit ? <Loader active inline="centered" size="huge" />:(
             
-            <div className='md:w-[600px] mx-auto'>
+            <div className='md:w-[600px] w-[300px] mx-auto'>
             <h2 className='mb-5 text-center font-semibold font-caveat text-[30px] mt-[100px]'>{id ? "Update Recipe" : "Add Recipe"}</h2>
             <form onSubmit={handleSubmit}>
                 <Label className="mt-10">Nama Resep</Label>
