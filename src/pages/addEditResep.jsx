@@ -129,13 +129,13 @@ const AddEditResep = () => {
         <div className='bg-ungu'>
             <Navbar />
         </div>
-        <div className="container flex flex-col lg:flex-row justify-evenly mx-auto  md:flex-row  mb-10 ">
-        <div className="lg:w-[400px] md:w-[300px] w-[300px] mx-auto">
+
+        <div className="container mx-auto flex justify-between">
 
             {isSubmit ? <Loader active inline="centered" size="huge" />:(
             
-            <div className='container mx-auto'>
-            <h2 className='mt-10 mb-5 text-center font-semibold'>{id ? "Update Recipe" : "Add Recipe"}</h2>
+            <div className='md:w-[600px] mx-auto'>
+            <h2 className='mb-5 text-center font-semibold font-caveat text-[30px] mt-[100px]'>{id ? "Update Recipe" : "Add Recipe"}</h2>
             <form onSubmit={handleSubmit}>
                 <Label className="mt-10">Nama Resep</Label>
                 <Input 
@@ -207,15 +207,9 @@ const AddEditResep = () => {
                 
             </form>
             </div>
-
-            // <div className="w-[400px] lg:w-[500px] md:w-[500px] mx-auto">
-            // <img src="../src/assets/img/add.png" alt="" />
-            // </div>
-
             )}
             </div>
         </div>
-    </div>
   )
 }
 
