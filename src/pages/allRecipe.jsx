@@ -138,7 +138,7 @@ const AllRecipe = () => {
                 >
                 </div>
                     
-                <div className='modal-content modal'>
+                <div className='modal-content modal w-60'>
 
                         <h2 className="font-semibold text-center mb-5">{resep.name}</h2>
               
