@@ -19,6 +19,7 @@ const AllRecipe = () => {
    const [loading, setLoading] = useState(false)
    const [searchTerm, setSearchTerm] = useState('')
    const [modal, setModal] = useState(false)
+   const [modalPosition, setModalPosition] = useState({ top: "50%", left: "50%" });
    const navigate = useNavigate()
 
    useEffect(() => {
@@ -64,6 +65,7 @@ const AllRecipe = () => {
 
    const toggleModal = (item) => {
         setModal(!modal)
+        setModalPosition({ top: "50%", left: "50%" });
         setResep(item)
     }
 
@@ -123,8 +125,18 @@ const AllRecipe = () => {
 
     <div>
             {modal && (
-                <div className=''>
-                <div onCLick={toggleModal} className='overlay'></div>
+                <div className="modal"
+                style={{
+                    top: modalPosition.top,
+                    left: modalPosition.left,
+                    transform: 'translate(-50%, -50%)',
+                }}
+                >
+                <div 
+                onCLick={toggleModal} 
+                className='overlay '
+                >
+                </div>
                     
                 <div className='modal-content modal'>
 
