@@ -134,11 +134,11 @@ const AllRecipe = () => {
                 >
                 <div 
                 onCLick={toggleModal} 
-                className='overlay '
+                className='overlay'
                 >
                 </div>
                     
-                <div className='modal-content modal w-60'>
+                <div className='modal-content modal w-60 md:w-[900px]'>
 
                         <h2 className="font-semibold text-center mb-5">{resep.name}</h2>
               
