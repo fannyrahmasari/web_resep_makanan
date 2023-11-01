@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom"
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore"
 import ModalComp from "../components/ModalComp"
 import Detail from "./detail"
+// import ModalExampleModal from "../components/Modal"
 
 const AllRecipe = () => {
    const [reseps, setReseps] = useState([])
@@ -43,6 +44,8 @@ const AllRecipe = () => {
    const handleModal = (item) => {
         setOpen(true)
         setResep(item)
+        console.log(setResep)
+        // navigate(`/detail/${item.id}`, { state: { item } });
    }
 
    const handleDelete = async (id) => {
@@ -96,13 +99,18 @@ const AllRecipe = () => {
             ))}
         </div>
     </div>
-
+            
         {open && (
-        <Detail resep={resep} open={open} setOpen={setOpen} handleDelete={handleDelete} />
+        <Detail 
+        resep={resep} 
+        open={open} 
+        setOpen={setOpen} 
+        handleDelete={handleDelete}
+        />
         )}
 
         {/* {open && (
-        <ModalComp 
+        <ModalExampleModal 
             open={open}
             setOpen={setOpen}
             handleDelete={handleDelete}

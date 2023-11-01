@@ -4,10 +4,14 @@ import Button from "../components/Button";
 import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 
-const Detail = ({resep, open, setOpen, handleDelete }) => {
+const Detail = ({resep, open, setOpen, img, name, deskription, handleDelete}) => {
 
     return (
-      <div>
+      <div
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={open}
+      >
         <div className="bg-ungu">
           <Navbar />
         </div>
@@ -15,10 +19,10 @@ const Detail = ({resep, open, setOpen, handleDelete }) => {
         {/* Tampilkan informasi resep di sini */}
         <div className="container mx-auto">
           <div>
-            <img src={resep.img} className="w-full lg:h-[200px]" />
+            <img src={img} className="w-full lg:h-[200px]" />
           </div>
-          <p className="font-semibold mt-5 mb-2">{resep.name}</p>
-          <p className="text-justify">{resep.deskription}</p>
+          <p className="font-semibold mt-5 mb-2">{name}</p>
+          <p className="text-justify">{deskription}</p>
           {/* Tampilkan detail lainnya jika perlu */}
           {/* Tambahkan tombol atau elemen lain jika diperlukan */}
           <div className="flex mt-5 gap-2">
