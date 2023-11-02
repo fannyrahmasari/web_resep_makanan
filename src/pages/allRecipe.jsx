@@ -40,15 +40,10 @@ const AllRecipe = () => {
     }
    },[])
 
-//    const handleViewDetail = (resep) => {
-//     navigate(`/detail/${resep.id}`, { state: { resep } });
-//   };
-
    const handleModal = (item) => {
         setOpen(true)
         setResep(item)
         console.log(setResep)
-        // navigate(`/detail/${item.id}`, { state: { item } });
    }
 
    const handleDelete = async (id) => {
@@ -69,12 +64,6 @@ const AllRecipe = () => {
         setResep(item)
     }
 
-    // if(modal) {
-    //     document.body.classList.add('active-modal')
-    // }else {
-    //     document.body.classList.remove('active-modal')
-    // }
-
     return(
     <div>
         <div>
@@ -87,7 +76,7 @@ const AllRecipe = () => {
         <div className="mx-auto md:w-[500px] w-[300px] mt-5 mb-5">
             <Input
             placeholder="Search Recipe ..."
-            onchange={event => {setSearchTerm(event.target.value)}}
+            onChange={event => {setSearchTerm(event.target.value)}}
             />
         </div>
     
@@ -133,7 +122,7 @@ const AllRecipe = () => {
                 }}
                 >
                 <div 
-                onCLick={toggleModal} 
+                onClick={toggleModal} 
                 className='overlay'
                 >
                 </div>

@@ -6,7 +6,7 @@ const Input = (props,...rest) => {
     return(
         <input 
         type={type}
-        className="text-sm md:h-[70px] h-[60px] border border-gray-900 rounded w-full py-2 px-3 text-gray-900 placeholder: opacity-50"
+        className="text-sm md:h-[40px] h-[40px] border border-gray-900 rounded w-full py-2 px-3 text-gray-900 placeholder: opacity-50"
         placeholder={placeholder}
         name={name}
         id={id}

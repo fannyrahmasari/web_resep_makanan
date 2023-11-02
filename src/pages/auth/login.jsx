@@ -27,33 +27,37 @@ const Login = () => {
     return(
         <div className="flex justify-center items-center lg:flex-row md:flex-row flex-col container h-screen mx-auto">
                 <div className="lg:order-1 md:order-1 order-2">
-                    <h1 className="font-poppins lg:text-[25px] text-[18px]">Log In To Continue</h1>
+                    <h1 className="font-poppins lg:text-[25px] text-[18px]">Log In</h1>
                     <p className="text-[12px]">Don’t have an account ?<Link to="/signup"><u>create a new account</u></Link></p>
 
-                    <div className="lg:w-[500px] w-[300px]">
+                    <div className="lg:w-[500px] w-[300px] mt-5">
                         <form onSubmit={login}>
-                            <Label>E-Mail</Label>
-                            <Input
-                            name="email"
-                            label="E-Mail :"
-                            placeholder="example@gmail.com"
-                            type="email"
-                            onChange={(event) => {
-                                setLoginEmail(event.target.value)
-                            }}
-                            />
+                            <div className="mb-3">
+                                <Label>E-Mail</Label>
+                                <Input
+                                name="email"
+                                label="E-Mail :"
+                                placeholder="example@gmail.com"
+                                type="email"
+                                onChange={(event) => {
+                                    setLoginEmail(event.target.value)
+                                }}
+                                />
+                            </div>
 
-                            <Label>Password</Label>
-                            <Input
-                            name="password"
-                            label="Password :"
-                            placeholder="*****"
-                            type="password"
-                            id="password"
-                            onChange={(event) => {
-                                setLoginPassword(event.target.value)
-                            }}
+                            <div>
+                                <Label>Password</Label>
+                                <Input
+                                name="password"
+                                label="Password :"
+                                placeholder="*****"
+                                type="password"
+                                id="password"
+                                onChange={(event) => {
+                                    setLoginPassword(event.target.value)
+                                }}
                             />
+                            </div>
                             
                             {/* <Link to={`/navbar?email=${user?.email}`}> */}
                             <Button
