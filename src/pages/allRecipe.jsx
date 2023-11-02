@@ -1,6 +1,5 @@
 import Navbar from "../components/Navbar"
 import Input from "../components/input/Input"
-import Label from "../components/input/Label"
 import Footer from "../components/Footer"
 import Button from "../components/Button"
 import '../components/Modal/modal.css'

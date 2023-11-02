@@ -5,8 +5,9 @@ import SignUp from '../pages/auth/signup'
 import AllRecipe from '../pages/allRecipe'
 import Profile from '../pages/profile'
 import AddEditResep from '../pages/addEditResep'
-import Detail from '../pages/detail'
 import Modal from '../components/Modal/Modal'
+import AIPage from '../pages/openAI'
+import About from '../pages/about'
 
 function App() {
 
@@ -20,8 +21,9 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/add' element={<AddEditResep />} />
           <Route path='/update/:id' element={<AddEditResep />} />
-          <Route path='/detail/:id' element={<Detail />} />
           <Route path='/modal' element={<Modal />} />
+          <Route path='/openai' element={<AIPage />} />
+          <Route path='/about' element={<About />} />
         </Routes>
     </Router>
   )

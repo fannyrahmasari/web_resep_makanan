@@ -1,6 +1,9 @@
 import Label from "../../components/input/Label"
 import Input from "../../components/input/Input"
 import Button from "../../components/Button"
+
+import signupImage from  '../../assets/img/signup.png'
+
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"
@@ -10,12 +13,6 @@ import { auth } from "../../firebase-config"
 const SignUp = () => {
     const [signupEmail, setSignupEmail] = useState("")
     const [signupPassword, setSignupPassword] = useState("")
-
-    // const [user, setUser] = useState({})
-
-    // onAuthStateChanged(auth, (currentUser) => {
-    //     setUser(currentUser)
-    // })
 
     const signup = async (event) => {
         event.preventDefault()
@@ -78,18 +75,9 @@ const SignUp = () => {
                     </div>
                 </div>
                 <div className="lg:order-2 md:order-2 order-1"> 
-                    <img src="../src/assets/img/signup.png" alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
+                    <img src={signupImage} alt="" className="lg:w-[500px] md:w-[400px] w-[300px]" />
                 </div>
-        </div>
-            <div>
-                {/* <h4>User Logged In: </h4>
-                {user?.email} */}
-
-                {/* <Button
-                text="Logout"
-                onClick={logout} 
-                /> */}
-            </div>                
+        </div>                
         </div>
     )
 }
