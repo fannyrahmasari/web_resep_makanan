@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import Label from '../components/input/Label'
 import Input from '../components/input/Input'
 import Button from '../components/Button'
+import Navbar from '../components/Navbar'
+
+import Swal from 'sweetalert2'
 
 import { storage, db } from '../firebase-config'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Loader } from 'semantic-ui-react'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { addDoc, collection, doc, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore'
-import Navbar from '../components/Navbar'
+
 
 const initialState = {
    name: "",
@@ -108,6 +111,13 @@ const AddEditResep = () => {
                     ...data,
                     timestamp: serverTimestamp()
                 })
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tambah resep berhasil',
+                    text: 'Resep Anda berhasil ditambahkan!'
+                }).then(() => {
+                    navigate("/allrecipe");
+                });
             } catch (error){
                 console.log(error)
             }
@@ -117,6 +127,13 @@ const AddEditResep = () => {
                     ...data,
                     timestamp: serverTimestamp()
                 })
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Update resep berhasil',
+                    text: 'Resep Anda berhasil diperbarui!'
+                }).then(() => {
+                    navigate("/allrecipe");
+                });
             } catch (error){
                 console.log(error)
             }

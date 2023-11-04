@@ -1,19 +1,24 @@
 import Navbar from "../components/Navbar"
 import Button from "../components/Button"
-import Card from "../components/Card"
-import InputForm from "../components/input/Index"
 import Footer from "../components/Footer"
 
 import heroImage from '../assets/img/hero-image.png'
-import card1 from '../assets/img/card-1.jpg'
-import card2 from '../assets/img/card-2.png'
-import aboutImage from '../assets/img/about.png'
-import contactImage from '../assets/img/contact.png'
 
+import Swal from "sweetalert2"
+
+import { useEffect } from "react"
 import { Fragment } from "react"
 import { useNavigate } from "react-router-dom"
 const LandingPages = () => {
     const navigate = useNavigate()
+
+    useEffect(() => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Selamat Datang!',
+            text: 'Selamat datang di Aneka Rasa. Mari bersama-sama memasak dengan resep favorit kita!',
+        });
+    }, []);
 
     return(
     <Fragment>

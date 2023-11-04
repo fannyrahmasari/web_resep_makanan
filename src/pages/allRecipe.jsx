@@ -2,7 +2,8 @@ import Navbar from "../components/Navbar"
 import Input from "../components/input/Input"
 import Footer from "../components/Footer"
 import Button from "../components/Button"
-import '../components/Modal/modal.css'
+
+import Swal from "sweetalert2"
 
 import { useState, useEffect } from "react"
 import { db } from "../firebase-config"
@@ -46,13 +47,33 @@ const AllRecipe = () => {
    }
 
    const handleDelete = async (id) => {
-    if(window.confirm("Are You Sure to delete that user ?")){
+    const confirmResult = await Swal.fire({
+        title: 'Konfirmasi',
+        text: 'Apakah Anda yakin ingin menghapus resep ini?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, Hapus',
+        cancelButtonText: 'Batal'
+    });
+
+    if(confirmResult.isConfirmed){
         try{
             setOpen(false)
             await deleteDoc(doc(db, "resep", id))
             setReseps(reseps.filter((resep) => resep.id !== id))
+            Swal.fire({
+                icon: 'success',
+                title: 'Hapus Resep Berhasil',
+                text: 'Resep telah dihapus.'
+            }).then(() => {
+                navigate("/allrecipe");
+            })
         } catch (err){
-            console.log(err)
+            Swal.fire({
+                icon: 'error',
+                title: 'Kesalahan',
+                text: 'Terjadi kesalahan saat menghapus resep.'
+            });
         }
     }
    }

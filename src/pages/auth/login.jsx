@@ -59,13 +59,11 @@ const Login = () => {
                             />
                             </div>
                             
-                            {/* <Link to={`/navbar?email=${user?.email}`}> */}
                             <Button
                             type="submit"
                             text="Log In"
                             classname="bg-ungu text-white font-semibold mt-5"
                             />
-                            {/* </Link> */}
 
                         </form>
                        

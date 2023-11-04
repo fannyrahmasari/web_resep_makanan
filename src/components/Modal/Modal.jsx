@@ -40,24 +40,6 @@ const Modal = () => {
             </div>
             )}
         </div>
-
-
-
-          {/* {open && (
-        <ModalExampleModal 
-            open={open}
-            setOpen={setOpen}
-            handleDelete={handleDelete}
-            img={resep.img} // Sesuaikan dengan prop yang ada di ModalComp
-            name={resep.name} // Sesuaikan dengan prop yang ada di ModalComp
-            deskription={resep.deskription} // Sesuaikan dengan prop yang ada di ModalComp
-            ingredients={resep.ingredients} // Sesuaikan dengan prop yang ada di ModalComp
-            make={resep.make} // Sesuaikan dengan prop yang ada di ModalComp
-            />
-        )} */}
-
-
-
         </>
     )
 }
