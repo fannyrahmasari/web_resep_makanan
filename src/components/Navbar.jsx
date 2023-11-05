@@ -9,7 +9,7 @@ const Navbar = () => {
     let Links = [
         {name: "Home", link:"/landingpages"},
         {name: "About", link:"/about"},
-        {name: "Contact", link:"/"}
+        {name: "Login", link:"/"},
     ]
 
     let [open, setOpen] = useState(false)
@@ -37,11 +37,6 @@ const Navbar = () => {
                     ))
                 }
                 <div className="flex gap-2 md:gap-0">
-                    <Button
-                    onClick={() => navigate('/')}  
-                    text="Login"
-                    classname="text-xl text-white bg-purple-500 hover:bg-purple-400 md:ml-10"
-                    />
                     <Button
                     onClick={() => navigate('/add')}  
                     text="Add Recipe"
